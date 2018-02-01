@@ -1,11 +1,14 @@
 {
   "name": "startnow-react200-budget-tracker",
   "version": "1.0.0",
+  "engines": {
+    "node": "9.3.0"
+  },
   "description": "React/Redux Budget Tracker",
   "main": "server/index.js",
   "scripts": {
-    "build": "npm run less && webpack -w",
     "start": "npm run build && node server/index.js",
+    "build": "npm run less && webpack",
     "less": "lessc src/css/style.less dist/css/style.css",
     "lint": "eslint .",
     "test": "mocha test/.setup.js test/*.spec.js"
