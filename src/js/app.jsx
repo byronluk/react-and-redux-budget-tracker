@@ -1,6 +1,6 @@
 import React from 'react';
-import IncomeEntries from './components/IncomeEntries';
-import ExpenseEntries from './components/ExpenseEntries';
+import ExpenseEntries from './components/ExpenseEntries/index';
+import IncomeEntries from './components/IncomeEntries/index';
 import Summary from './components/Summary';
 
 export default class App extends React.Component {

@@ -9,6 +9,7 @@ import {
 export default class ExpenseEntries extends React.Component {
   constructor(props) {
     super(props);
+
     this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
     this.handleAmountInput = this.handleAmountInput.bind(this);
     this.handleAddExpense = this.handleAddExpense.bind(this);
@@ -60,7 +61,7 @@ export default class ExpenseEntries extends React.Component {
             <button
               type='button'
               className='btn btn-danger col-12 mb-5'
-              onclick={ this.handleAddExpense }
+              onClick={ this.handleAddExpense }
             >+ Add Expense
             </button>
             <table className='table table-sm table-hover'>
@@ -72,8 +73,8 @@ export default class ExpenseEntries extends React.Component {
               </thead>
               <tbody>
                 {
-                  lineItems.map(lineItem => (
-                    <tr>
+                  lineItems.map((lineItem, index) => (
+                    <tr key={ index }>
                       <td>{ lineItem.description }</td>
                       <td>{ lineItem.amount.toFixed(2) }</td>
                     </tr>

@@ -24,10 +24,10 @@ describe('express', () => {
   it('should have the correct page title', () =>
     nightmare
       .goto(url)
-      .evaluate(() => document.querySelector('body').innerText)
+      .evaluate(() => document.querySelector('h1.display-3').innerText)
       .end()
       .then((text) => {
-        expect(text).to.contain('Budget Tracker');
+        expect(text).to.equal('Budget Tracker');
       })
   );
 

@@ -3,33 +3,38 @@ import React from 'react';
 import {
   updateIncomeDescription,
   updateIncomeAmount,
-  addIncome,
+  addIncome
 } from './incomeActions';
 
 export default class IncomeEntries extends React.Component {
   constructor(props) {
     super(props);
-    this.handeDescriptionInput = this.handleDescriptionInput.bind(this);
+
+    this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
     this.handleAmountInput = this.handleAmountInput.bind(this);
     this.handleAddIncome = this.handleAddIncome.bind(this);
   }
 
   handleDescriptionInput(event) {
+    // dispatch was provided by connect()
     const { dispatch } = this.props;
     const { value } = event.target;
     dispatch(updateIncomeDescription(value));
   }
+
   handleAmountInput(event) {
     const { dispatch } = this.props;
     const { value } = event.target;
     dispatch(updateIncomeAmount(value));
   }
+
   handleAddIncome() {
     const { description, amount, dispatch } = this.props;
     dispatch(addIncome(description, amount));
   }
 
   render() {
+    // These values were provided by connect()
     const { description, amount, lineItems } = this.props;
     return (
       <div className='card border-success mb-3'>
@@ -42,6 +47,7 @@ export default class IncomeEntries extends React.Component {
                 type='text'
                 className='form-control'
                 id='income-description'
+                value={ description }
                 onChange={ this.handleDescriptionInput }
               />
             </div>
@@ -53,6 +59,7 @@ export default class IncomeEntries extends React.Component {
                   type='text'
                   className='form-control'
                   id='income-amount'
+                  value={ amount }
                   onChange={ this.handleAmountInput }
                 />
               </div>
@@ -61,7 +68,7 @@ export default class IncomeEntries extends React.Component {
               type='button'
               className='btn btn-success col-12 mb-5'
               onClick={ this.handleAddIncome }
-            >+ Add income
+            >+ Add Income
             </button>
             <table className='table table-sm table-hover'>
               <thead>
@@ -72,10 +79,10 @@ export default class IncomeEntries extends React.Component {
               </thead>
               <tbody>
                 {
-                  lineItems.map(lineItem => (
-                    <tr>
-                      <td>{ lineItem.description}</td>
-                      <td>{ lineItem.amount.toFixed(2) }</td>
+                  lineItems.map((lineItem, index) => (
+                    <tr key={ index }>
+                      <td>{ lineItem.description }</td>
+                      <td>${ lineItem.amount.toFixed(2) }</td>
                     </tr>
                   ))
                 }
